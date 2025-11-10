@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pranal Thapa's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Navigation Component
+        const Nav = () => {
+            const scrollToSection = (id) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            };
+
+            return (
+                <nav id="navbar">
+                    <ul>
+                        <li><a onClick={() => scrollToSection('home')}>Home</a></li>
+                        <li><a onClick={() => scrollToSection('education')}>Education</a></li>
+                        <li><a onClick={() => scrollToSection('skills')}>Skills</a></li>
+                        <li><a onClick={() => scrollToSection('cv')}>CV</a></li>
+                        <li><a onClick={() => scrollToSection('articles')}>Articles</a></li>
+                        <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>
+                    </ul>
+                </nav>
+            );
+        };
+
+        // Hero Section
+        const Hero = () => {
+            return (
+                <section id="home" className="hero">
+                    <div className="floating-shapes">
+                        <div className="shape"></div>
+                        <div className="shape"></div>
+                        <div className="shape"></div>
+                    </div>
+                    <div className="hero-content">
+                        <div className="hero-image">
+                            <img src="profile.jpeg" alt="Pranal Thapa" />
+                        </div>
+                        <div className="hero-text">
+                            <h1 className="typing">Pranal Thapa</h1>
+                            <h2>CS Student</h2>
+                            <div className="hero-badges">
+                                <span className="badge" onClick={() => alert('Amateur Speaker: Passionate about public speaking!')}>🎤 Amateur Speaker</span>
+                                <span className="badge" onClick={() => alert('Film Enthusiast: Love storytelling through cinema!')}>🎬 Film Enthusiast</span>
+                            </div>
+                            <p>Passionate about technology, storytelling, and public speaking. Currently exploring the intersection of computer science and creative expression while building innovative solutions.</p>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Education Section
+        const Education = () => {
+            return (
+                <section id="education">
+                    <h2>Education</h2>
+                    <div className="education-grid">
+                        <div className="education-item fade-in" onClick={() => alert('Currently studying at Apex College!')}>
+                            <h3>Bachelor of Computer System and Information Technology (BCSIT)</h3>
+                            <p className="institution">Apex College, Nepal</p>
+                            <p className="year">2024 - Present</p>
+                            <p>Currently pursuing my bachelor's degree, focusing on advanced computer systems, software development, database management, and emerging technologies.</p>
+                        </div>
+                        <div className="education-item fade-in" onClick={() => alert('Completed +2 at Global College!')}>
+                            <h3>Higher Secondary Education (+2)</h3>
+                            <p className="institution">Global College of Management, Nepal</p>
+                            <p className="year">2022 - 2024</p>
+                            <p>Majored in Computer Science and Social Studies, building a strong foundation in fundamentals of Computer, and understanding social dynamics.</p>
+                        </div>
+                        <div className="education-item fade-in" onClick={() => alert('Schooling at St. Xavier\'s!')}>
+                            <h3>School Level Education</h3>
+                            <p className="institution">St. Xavier's School, Jawalakhel, Nepal</p>
+                            <p className="year">2012 - 2022</p>
+                            <p>Completed my schooling from St Xaviers School Jawalakhel Lalitpur.</p>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Skills Section
+        const Skills = () => {
+            return (
+                <section id="skills">
+                    <h2>Skills</h2>
+                    <div className="skills-grid">
+                        <div className="skill-item fade-in" onClick={() => alert('Proficient in HTML for structuring web content.')}>
+                            <div className="icon">💻</div>
+                            <h3>HTML</h3>
+                        </div>
+                        <div className="skill-item fade-in" onClick={() => alert('Expert in CSS for styling and layouts.')}>
+                            <div className="icon">🎨</div>
+                            <h3>CSS</h3>
+                        </div>
+                        <div className="skill-item fade-in" onClick={() => alert('Skilled in JavaScript for interactive web apps.')}>
+                            <div className="icon">⚡</div>
+                            <h3>JavaScript</h3>
+                        </div>
+                        <div className="skill-item fade-in" onClick={() => alert('Experienced with Python for backend and automation.')}>
+                            <div className="icon">🐍</div>
+                            <h3>Python</h3>
+                        </div>
+                        <div className="skill-item fade-in" onClick={() => alert('Knowledgeable in SQL for database management.')}>
+                            <div className="icon">🗄️</div>
+                            <h3>SQL</h3>
+                        </div>
+                        <div className="skill-item fade-in" onClick={() => alert('Familiar with Git for version control.')}>
+                            <div className="icon">🔧</div>
+                            <h3>Git</h3>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // CV Section with Modal
+        const CV = () => {
+            const [showModal, setShowModal] = useState(false);
+
+            return (
+                <section id="cv">
+                    <div className="cv-section fade-in">
+                        <h2>Download My CV</h2>
+                        <p>Want to know more about my journey? Download my complete curriculum vitae.</p>
+                        <div className="cv-button" onClick={() => setShowModal(true)}>
+                            <span>View & Download CV</span>
+                        </div>
+                    </div>
+                    {showModal && (
+                        <div className="modal show" onClick={() => setShowModal(false)}>
+                            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                                <span className="close-modal" onClick={() => setShowModal(false)}>&times;</span>
+                                <h2>My CV</h2>
+                                <p>Here is a preview of my CV. (In a real scenario, embed PDF or details here.)</p>
+                                <a href="cv.pdf" download>Download CV</a> {/* Assume cv.pdf exists */}
+                            </div>
+                        </div>
+                    )}
+                </section>
+            );
+        };
+
+        // Articles Section with Modals
+        const Articles = () => {
+            const [selectedArticle, setSelectedArticle] = useState(null);
+
+            const articles = [
+                {
+                    id: 1,
+                    title: 'जेन-जी आन्दोलन: दीर्घकालीन सुधारको बाटोमा अल्पकालीन चुनौती',
+                    date: 'Ashwin 12, 2082',
+                    summary: '',
+                    content: 'Full content: https://chandrasuryawani.com/2025/09/60188/'
+                },
+                {
+                    id: 2,
+                    title: 'JavaScript Best Practices',
+                    date: 'August 22, 2024',
+                    summary: 'Learn the essential best practices for writing clean and efficient JavaScript code...',
+                    content: 'Full content: Use const/let, avoid globals, use async/await, etc.'
+                },
+                {
+                    id: 3,
+                    title: 'Understanding SQL Databases',
+                    date: 'July 10, 2024',
+                    summary: 'Deep dive into relational databases and how to structure your data effectively...',
+                    content: 'Full content: SQL basics, normalization, queries, joins.'
+                }
+            ];
+
+            return (
+                <section id="articles">
+                    <h2>Articles</h2>
+                    <div className="articles-grid">
+                        {articles.map(article => (
+                            <div key={article.id} className="article-card fade-in" onClick={() => setSelectedArticle(article)}>
+                                <div className="article-image">📝</div>
+                                <div className="article-content">
+                                    <h3>{article.title}</h3>
+                                    <p className="article-date">{article.date}</p>
+                                    <p>{article.summary}</p>
+                                    <span className="read-more">Read More →</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    {selectedArticle && (
+                        <div className="modal show" onClick={() => setSelectedArticle(null)}>
+                            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                                <span className="close-modal" onClick={() => setSelectedArticle(null)}>&times;</span>
+                                <h2>{selectedArticle.title}</h2>
+                                <p className="article-date">{selectedArticle.date}</p>
+                                <p>{selectedArticle.content}</p>
+                            </div>
+                        </div>
+                    )}
+                </section>
+            );
+        };
+
+        // Footer
+        const Footer = () => {
+            return (
+                <footer id="contact">
+                    <h3>Get In Touch</h3>
+                    <p>Let's connect!</p>
+                    <div className="social-links">
+                        <a href="https://www.instagram.com/pranal_911/" target="_blank">📷 Instagram</a>
+                        <a href="https://www.facebook.com/pranal.thapa.5" target="_blank">📘 Facebook</a>
+                        <a href="https://www.linkedin.com/in/pranal-thapa-406b69319/" target="_blank">💼 LinkedIn</a>
+                        <a href="https://github.com/yourusername" target="_blank">💻 GitHub</a> {/* Update with real GitHub */}
+                    </div>
+                    <p style={{ marginTop: '2rem', opacity: 0.7 }}>© 2024 Pranal Thapa. All rights reserved.</p>
+                </footer>
+            );
+        };
+
+        // Main App
+        const App = () => {
+            useEffect(() => {
+                // Intersection Observer for fade-in
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.style.animationDelay = `${index * 0.1}s`;
+                                entry.target.classList.add('fade-in');
+                            }, index * 100);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    observer.observe(el);
+                });
+
+                // Parallax effect
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.pageYOffset;
+                    const hero = document.querySelector('.hero');
+                    if (hero && scrolled < window.innerHeight) {
+                        hero.style.transform = `translateY(${scrolled * 0.4}px)`;
+                    }
+                });
+
+                // Dynamic hue rotation
+                let hue = 0;
+                const interval = setInterval(() => {
+                    hue = (hue + 1) % 360;
+                    document.querySelector('.hero').style.filter = `hue-rotate(${hue * 0.1}deg)`;
+                }, 100);
+
+                return () => clearInterval(interval);
+            }, []);
+
+            return (
+                <>
+                    <Nav />
+                    <Hero />
+                    <Education />
+                    <Skills />
+                    <CV />
+                    <Articles />
+                    <Footer />
+                </>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
