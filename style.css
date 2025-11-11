@@ -1,4 +1,4 @@
- * {
+* {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -522,7 +522,7 @@
             box-shadow: 0 20px 60px rgba(255, 0, 110, 0.5);
         }
 
-        /* Articles */
+        /* Articles & Projects */
         .articles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -652,7 +652,6 @@
             box-shadow: 0 10px 30px rgba(255, 0, 110, 0.4);
         }
 
-        /* Animations */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);

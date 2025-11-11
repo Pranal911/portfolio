@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pranal Thapa's Portfolio</title>
     <link rel="stylesheet" href="style.css">
+
+    <title>Pranal Thapa's Portfolio</title>
 </head>
+
 <body>
+    
     <div id="root"></div>
 
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -32,7 +35,7 @@
                         <li><a onClick={() => scrollToSection('education')}>Education</a></li>
                         <li><a onClick={() => scrollToSection('skills')}>Skills</a></li>
                         <li><a onClick={() => scrollToSection('cv')}>CV</a></li>
-                        <li><a onClick={() => scrollToSection('articles')}>Articles</a></li>
+                        <li><a onClick={() => scrollToSection('articles-projects')}>Articles & Projects</a></li>
                         <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>
                     </ul>
                 </nav>
@@ -59,7 +62,7 @@
                                 <span className="badge" onClick={() => alert('Amateur Speaker: Passionate about public speaking!')}>🎤 Amateur Speaker</span>
                                 <span className="badge" onClick={() => alert('Film Enthusiast: Love storytelling through cinema!')}>🎬 Film Enthusiast</span>
                             </div>
-                            <p>Passionate about technology, storytelling, and public speaking. Currently exploring the intersection of computer science and creative expression while building innovative solutions.</p>
+                            <p>Passionate about technology, storytelling, and public speaking. Currently exploring data science along with speaking in public, giving speeches(As you can see in my instagram stories).</p>
                         </div>
                     </div>
                 </section>
@@ -82,7 +85,7 @@
                             <h3>Higher Secondary Education (+2)</h3>
                             <p className="institution">Global College of Management, Nepal</p>
                             <p className="year">2022 - 2024</p>
-                            <p>Majored in Computer Science and Social Studies, building a strong foundation in fundamentals of Computer, and understanding social dynamics.</p>
+                            <p>Majored in Computer Science and Social Studies, building a strong foundation in fundamentals of Computer, and understood social studies.</p>
                         </div>
                         <div className="education-item fade-in" onClick={() => alert('Schooling at St. Xavier\'s!')}>
                             <h3>School Level Education</h3>
@@ -105,23 +108,23 @@
                             <div className="icon">💻</div>
                             <h3>HTML</h3>
                         </div>
-                        <div className="skill-item fade-in" onClick={() => alert('Expert in CSS for styling and layouts.')}>
+                        <div className="skill-item fade-in" onClick={() => alert('Learning CSS for styling and layouts.')}>
                             <div className="icon">🎨</div>
                             <h3>CSS</h3>
                         </div>
-                        <div className="skill-item fade-in" onClick={() => alert('Skilled in JavaScript for interactive web apps.')}>
+                        <div className="skill-item fade-in" onClick={() => alert('Learning JavaScript for interactive web apps.')}>
                             <div className="icon">⚡</div>
                             <h3>JavaScript</h3>
                         </div>
-                        <div className="skill-item fade-in" onClick={() => alert('Experienced with Python for backend and automation.')}>
+                        <div className="skill-item fade-in" onClick={() => alert('Using Python for learning and developing DataScience and ML Projects.')}>
                             <div className="icon">🐍</div>
                             <h3>Python</h3>
                         </div>
-                        <div className="skill-item fade-in" onClick={() => alert('Knowledgeable in SQL for database management.')}>
+                        <div className="skill-item fade-in" onClick={() => alert('Learning SQL for database management.')}>
                             <div className="icon">🗄️</div>
                             <h3>SQL</h3>
                         </div>
-                        <div className="skill-item fade-in" onClick={() => alert('Familiar with Git for version control.')}>
+                        <div className="skill-item fade-in" onClick={() => alert('Learning Git.')}>
                             <div className="icon">🔧</div>
                             <h3>Git</h3>
                         </div>
@@ -130,7 +133,6 @@
             );
         };
 
-        // CV Section with Modal
         const CV = () => {
             const [showModal, setShowModal] = useState(false);
 
@@ -149,7 +151,7 @@
                                 <span className="close-modal" onClick={() => setShowModal(false)}>&times;</span>
                                 <h2>My CV</h2>
                                 <p>Here is a preview of my CV. (In a real scenario, embed PDF or details here.)</p>
-                                <a href="cv.pdf" download>Download CV</a> {/* Assume cv.pdf exists */}
+                                <a href="cv.docs" download className="cv-button" style={{background: 'var(--primary)', color: 'white', padding: '0.8rem 2rem'}}>Download CV</a> 
                             </div>
                         </div>
                     )}
@@ -157,57 +159,92 @@
             );
         };
 
-        // Articles Section with Modals
-        const Articles = () => {
-            const [selectedArticle, setSelectedArticle] = useState(null);
+        const ArticlesProjects = () => {
+            const [selectedItem, setSelectedItem] = useState(null);
 
-            const articles = [
+            const portfolioItems = [
                 {
                     id: 1,
+                    type: 'Article', 
                     title: 'जेन-जी आन्दोलन: दीर्घकालीन सुधारको बाटोमा अल्पकालीन चुनौती',
                     date: 'Ashwin 12, 2082',
-                    summary: '',
-                    content: 'Full content: https://chandrasuryawani.com/2025/09/60188/'
+                    icon: '📝',
+                    summary: 'An article on the Gen-Z movement in Nepal, some of its challenges (Nepali content).',
+                    content: 'Full article is available on an external site. Click below to read the complete analysis.',
+                    liveDemoUrl: 'https://chandrasuryawani.com/2025/09/60188/', 
                 },
                 {
                     id: 2,
-                    title: 'JavaScript Best Practices',
-                    date: 'August 22, 2024',
-                    summary: 'Learn the essential best practices for writing clean and efficient JavaScript code...',
-                    content: 'Full content: Use const/let, avoid globals, use async/await, etc.'
+                    type: 'Project', 
+                    title: 'Heart Disease Prediction System (Streamlit)',
+                    date: 'October 20, 2024',
+                    icon: '❤️', 
+                    summary: 'A data science project utilizing machine learning models to predict the likelihood of heart disease, deployed with Streamlit.',
+                    content: `**Project Details:** This system uses a machine learning model trained on patient data to provide a rapid risk assessment.
+                              \n**Technologies:** Python, Scikit-learn, Pandas, Streamlit.
+                              \n**Action:** View the live demo or the source code on GitHub.`,
+                    liveDemoUrl: 'https://heart-disease-prediction-model-practise-forportfolio.streamlit.app/', 
+                    githubUrl: 'https://github.com/Pranal911/Heart-Disease-Prediction-Streamlit' 
                 },
                 {
                     id: 3,
-                    title: 'Understanding SQL Databases',
-                    date: 'July 10, 2024',
-                    summary: 'Deep dive into relational databases and how to structure your data effectively...',
-                    content: 'Full content: SQL basics, normalization, queries, joins.'
-                }
+                    type: 'Project', 
+                    title: 'Event Management Static Website (Vercel)',
+                    date: 'November 5, 2024',
+                    icon: '📅', 
+                    summary: 'A Minor College Front End Project for a hypothetical Event Management Company',
+                    content: `**Project Details:** This is a minor project i made in my college.
+                              \n**Technologies:** HTML,CSS,JS.
+                              \n**Action:** Test the live prediction tool or check the project documentation on GitHub.`,
+                    liveDemoUrl: 'https://minor-project-taupe.vercel.app/', 
+                    githubUrl: 'https://github.com/Pranal-911/MinorProject' 
+                },
             ];
 
             return (
-                <section id="articles">
-                    <h2>Articles</h2>
+                <section id="articles-projects">
+                    <h2>Articles & Projects</h2> 
                     <div className="articles-grid">
-                        {articles.map(article => (
-                            <div key={article.id} className="article-card fade-in" onClick={() => setSelectedArticle(article)}>
-                                <div className="article-image">📝</div>
+                        {portfolioItems.map(item => (
+                            <div key={item.id} className="article-card fade-in">
+                                <div className="article-image">{item.icon}</div>
                                 <div className="article-content">
-                                    <h3>{article.title}</h3>
-                                    <p className="article-date">{article.date}</p>
-                                    <p>{article.summary}</p>
-                                    <span className="read-more">Read More →</span>
+                                    <span className="badge" style={{ marginBottom: '1rem', display: 'inline-block', background: item.type === 'Project' ? 'var(--cyan)' : 'var(--accent)', color: 'white', cursor: 'default' }}>
+                                        {item.type}
+                                    </span>
+                                    <h3>{item.title}</h3>
+                                    <p className="article-date">{item.date}</p>
+                                    <p>{item.summary}</p>
+                                    
+                                    {item.type === 'Project' ? (
+                                        <>
+                                            <a href={item.liveDemoUrl} target="_blank" className="read-more" style={{ marginRight: '15px', color: 'var(--cyan)' }}>
+                                                Live Demo ↗
+                                            </a>
+                                            <a href={item.githubUrl} target="_blank" className="read-more" style={{ color: 'var(--yellow)' }}>
+                                                GitHub Repo ↗
+                                            </a>
+                                        </>
+                                    ) : (
+                                        <span className="read-more" onClick={() => setSelectedItem(item)}>Read More →</span>
+                                    )}
                                 </div>
                             </div>
                         ))}
                     </div>
-                    {selectedArticle && (
-                        <div className="modal show" onClick={() => setSelectedArticle(null)}>
+                    {selectedItem && (
+                        <div className="modal show" onClick={() => setSelectedItem(null)}>
                             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                                <span className="close-modal" onClick={() => setSelectedArticle(null)}>&times;</span>
-                                <h2>{selectedArticle.title}</h2>
-                                <p className="article-date">{selectedArticle.date}</p>
-                                <p>{selectedArticle.content}</p>
+                                <span className="close-modal" onClick={() => setSelectedItem(null)}>&times;</span>
+                                <h2>{selectedItem.title} ({selectedItem.type})</h2>
+                                <p className="article-date">{selectedItem.date}</p>
+                                
+                                <p style={{ whiteSpace: 'pre-wrap' }}>{selectedItem.content}</p>
+                                {selectedItem.id === 1 && (
+                                     <a href={selectedItem.liveDemoUrl} target="_blank" className="cv-button" style={{ marginTop: '1rem', background: 'var(--cyan)', color: 'var(--dark)' }}>
+                                        <span>Read Full Article</span>
+                                    </a>
+                                )}
                             </div>
                         </div>
                     )}
@@ -220,22 +257,20 @@
             return (
                 <footer id="contact">
                     <h3>Get In Touch</h3>
-                    <p>Let's connect!</p>
+                    <p>For more Projects, Connect with me in my Linkedin or GitHub or Follow me In Instagram!</p>
                     <div className="social-links">
                         <a href="https://www.instagram.com/pranal_911/" target="_blank">📷 Instagram</a>
                         <a href="https://www.facebook.com/pranal.thapa.5" target="_blank">📘 Facebook</a>
                         <a href="https://www.linkedin.com/in/pranal-thapa-406b69319/" target="_blank">💼 LinkedIn</a>
-                        <a href="https://github.com/yourusername" target="_blank">💻 GitHub</a> {/* Update with real GitHub */}
+                        <a href="https://github.com/yourusername" target="_blank">💻 GitHub</a> 
                     </div>
-                    <p style={{ marginTop: '2rem', opacity: 0.7 }}>© 2024 Pranal Thapa. All rights reserved.</p>
+                    <p style={{ marginTop: '2rem', opacity: 0.7 }}> 2025 Pranal Thapa. PN- This is just a portfolio website. All the projects are not for actual practise but just a demo practise for my coding journey. </p>
                 </footer>
             );
         };
 
-        // Main App
         const App = () => {
             useEffect(() => {
-                // Intersection Observer for fade-in
                 const observerOptions = {
                     threshold: 0.1,
                     rootMargin: '0px 0px -50px 0px'
@@ -257,7 +292,7 @@
                     observer.observe(el);
                 });
 
-                // Parallax effect
+                // Parallax effect on Hero section
                 window.addEventListener('scroll', () => {
                     const scrolled = window.pageYOffset;
                     const hero = document.querySelector('.hero');
@@ -266,7 +301,7 @@
                     }
                 });
 
-                // Dynamic hue rotation
+                // Dynamic hue rotation (optional effect)
                 let hue = 0;
                 const interval = setInterval(() => {
                     hue = (hue + 1) % 360;
@@ -283,7 +318,7 @@
                     <Education />
                     <Skills />
                     <CV />
-                    <Articles />
+                    <ArticlesProjects /> {/* Rendering the updated component */}
                     <Footer />
                 </>
             );
